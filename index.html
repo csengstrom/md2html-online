@@ -6,7 +6,14 @@
 	<!-- https://github.com/chjj/marked  -->
 	<link href="css/foundation/foundation.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/style.css">
-	<style>.page-wrapper{margin:20px;}</style>
+	<style>
+		.page-wrapper{
+			margin:20px;}
+		.tight{
+			margin:0 3px 3px 3px;}
+		.tiny{
+			text-transform: uppercase;}
+	</style>
 </head>
 <body>
 <div class="page-wrapper">
@@ -14,6 +21,13 @@
 <h1 class="text-center">Markdown to HTML Converter</h1>
 <div class="row">
 	<div class="large-8 columns">
+		<div class="row">
+			<div class="large-12 columns">
+				<div class="tight">Insert Example Markdown</div>
+			  <button id="btn_headings" type="button" class="tiny button tight">headings</button>
+			  <button id="btn_ul" type="button" class="tiny button tight">list</button>
+			</div>
+		</div>
 		<textarea name="plain" id="plain_text" cols="115" rows="12" placeholder="Enter markdown text here."></textarea>
 		<button id="btn_convert" type="button" class="small button">CONVERT</button>
 	</div>
@@ -45,6 +59,8 @@
 		$jqo.btnConvert = $('#btn_convert');
 		$jqo.btnCopyToClipboard = $('#btn_copy_to_clipboard');
 		$jqo.renderedContent = $('#rendered_content');
+		$jqo.btnHeadings = $('#btn_headings');
+		$jqo.btnList = $('#btn_ul');
 
 		//$jqo.pt.val("Enter markdown text here.");
 		//$jqo.ph.val("Text converted from markdown to HTML will appear here.");
@@ -54,9 +70,26 @@
 			$jqo.ph.val(convertedText)
 			$jqo.renderedContent.html(convertedText);
 		});
-
 		$jqo.btnCopyToClipboard.click(function(){
 			copyToClipboard($jqo.ph.val());
+		});
+		$jqo.btnHeadings.click(function(){
+			var md = "# h1 Heading\n";
+			md += "## h2 Heading\n";
+			md += "### h3 Heading\n";
+			md += "#### h4 Heading\n";
+			md += "##### h5 Heading\n";
+			md += "###### h6 Heading\n";
+			$jqo.pt.val(md);
+		});
+		$jqo.btnList.click(function(){
+			var md = "### List\n";
+			md += "- Item 1\n";
+			md += "- Item 2\n";
+			md += "  - Item 2a\n";
+			md += "  - Item 2b\n";
+			md += "- Item 3\n";
+			$jqo.pt.val(md);
 		});
 	});
 </script>	
