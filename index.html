@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Markdown Lib Usage</title>
+	<title>md2html</title>
 	<!-- https://github.com/chjj/marked  -->
 	<link href="css/foundation/foundation.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/style.css">
@@ -10,9 +10,11 @@
 		.page-wrapper{
 			margin:20px;}
 		.tight{
-			margin:0 3px 3px 3px;}
+			margin:0 3px 3px 0px;}
 		.tiny{
 			text-transform: uppercase;}
+		.rendered h3{
+			color: #777;}
 	</style>
 </head>
 <body>
@@ -20,15 +22,15 @@
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <h1 class="text-center">Markdown to HTML Converter</h1>
 <div class="row">
+	<div class="large-12 columns">
+		<div class="tight">Insert Example Markdown</div>
+	  <button id="btn_headings" type="button" class="tiny button tight">headings</button>
+	  <button id="btn_ul" type="button" class="tiny button tight">list</button>
+	</div>
+</div>
+<div class="row">
 	<div class="large-8 columns">
-		<div class="row">
-			<div class="large-12 columns">
-				<div class="tight">Insert Example Markdown</div>
-			  <button id="btn_headings" type="button" class="tiny button tight">headings</button>
-			  <button id="btn_ul" type="button" class="tiny button tight">list</button>
-			</div>
-		</div>
-		<textarea name="plain" id="plain_text" cols="115" rows="12" placeholder="Enter markdown text here."></textarea>
+		<textarea name="plain" id="plain_text" cols="115" rows="12" placeholder="Enter or paste markdown text here."></textarea>
 		<button id="btn_convert" type="button" class="small button">CONVERT</button>
 	</div>
 	<div class="large-4 medium-12 small-12 columns">
@@ -37,8 +39,7 @@
 	</div> 
 </div> 
 <div class="row">
-	<div class="large-12 columns">
-		<hr>
+	<div class="large-12 columns rendered">
 		<h3>Rendered HTML &#8681;</h3>
 		<div id="rendered_content"></div>
 	</div>
@@ -83,7 +84,7 @@
 			$jqo.pt.val(md);
 		});
 		$jqo.btnList.click(function(){
-			var md = "### List\n";
+			var md = "# List\n";
 			md += "- Item 1\n";
 			md += "- Item 2\n";
 			md += "  - Item 2a\n";
