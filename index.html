@@ -11,19 +11,26 @@
 <body>
 <div class="page-wrapper">
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-	<h3>Markdown to HTML Converter</h3>
-	<textarea name="plain" id="plain_text" cols="115" rows="15" placeholder="Enter markdown text here."></textarea>
-	<button id="btn_convert" type="button" class="large button">convert</button>
-	<textarea name="plain" id="plain_html" cols="115" rows="15" placeholder="Text converted from markdown to HTML will appear here."></textarea>
-	<button id="btn_copy_to_clipboard" type="button" class="large button">copy to clipboard</button>
-	<hr>
-	<h4>Rendered HTML</h4>
-	<hr>
-	<div id="rendered_content"></div>
-
+<h1 class="text-center">Markdown to HTML Converter</h1>
+<div class="row">
+	<div class="large-8 columns">
+		<textarea name="plain" id="plain_text" cols="115" rows="12" placeholder="Enter markdown text here."></textarea>
+		<button id="btn_convert" type="button" class="small button">CONVERT</button>
+	</div>
+	<div class="large-4 medium-12 small-12 columns">
+		<textarea name="plain" id="plain_html" cols="115" rows="12" placeholder="Text converted from markdown to HTML will appear here."></textarea>
+		<button id="btn_copy_to_clipboard" type="button" class="small button">Copy to Clipboard</button>
+	</div> 
+</div> 
+<div class="row">
+	<div class="large-12 columns">
+		<hr>
+		<h3>Rendered HTML &#8681;</h3>
+		<div id="rendered_content"></div>
+	</div>
+</div>
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 </div> 
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script> -->
 <script src="js/jquery/jquery.min.js"></script>
 <script src="js/marked-lib/marked.js"></script>
 <script>
