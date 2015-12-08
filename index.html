@@ -5,16 +5,21 @@
 	<title>Markdown Lib Usage</title>
 	<!-- https://github.com/chjj/marked  -->
 	<link href="css/foundation/foundation.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
 	<style>.page-wrapper{margin:20px;}</style>
 </head>
 <body>
 <div class="page-wrapper">
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
-	<h3>MarkDown in browser &mdash; Rendered by <em>marked.js</em></h3>
-	<div id="content"></div>
-	<textarea name="plain" id="plain_text" cols="115" rows="20"></textarea>
-	
-	<button type="button" class="large button">convert</button>
+	<h3>Markdown to HTML Converter</h3>
+	<textarea name="plain" id="plain_text" cols="115" rows="15" placeholder="Enter markdown text here."></textarea>
+	<button id="btn_convert" type="button" class="large button">convert</button>
+	<textarea name="plain" id="plain_html" cols="115" rows="15" placeholder="Text converted from markdown to HTML will appear here."></textarea>
+	<button id="btn_copy_to_clipboard" type="button" class="large button">copy to clipboard</button>
+	<hr>
+	<h4>Rendered HTML</h4>
+	<hr>
+	<div id="rendered_content"></div>
 
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 </div> 
@@ -22,29 +27,29 @@
 <script src="js/jquery/jquery.min.js"></script>
 <script src="js/marked-lib/marked.js"></script>
 <script>
+	var $jqo = {};
+	var copyToClipboard;
+	copyToClipboard = function(text){
+		window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
+	};
 	$(document).ready(function(){
-		//document.getElementById('content').innerHTML = marked('# Marked in browser\n\nRendered by **marked**.');
-		var 
-			$pt = $('#plain_text');
-			md = '# Heading 1\n\n';
-			md += 'Paragraph text.\n\n';
-			md += '## Heading 2 - Link\n\n';
-			md += 'https://safeweb.norton.com/safety\n\n';
-			md += '## Heading 3 - >\n\n';
-			md += '> **Comment Box**\n> \n> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet recusandae repellendus, illo explicabo, saepe necessitatibus. Maiores dolore, officia necessitatibus placeat excepturi aliquid sit soluta modi itaque asperiores! Itaque, ex, deserunt';
-			md += '- bullet 1\n';
-			md += '- bullet 2\n';
-			md += '- bullet 3\n\n\n';
-			md += '| Year | Temperature (low) | Temperature (high) |  \n';
-			md += '| ---- | ----------------- | -------------------|  \n';
-			md += '| 1900 |               -10 |                 25 |  \n';
-			md += '| 1910 |               -15 |                 30 |  \n';
-			md += '| 1920 | ';
-		$pt.val(md);
+		$jqo.pt = $('#plain_text');
+		$jqo.ph = $('#plain_html');
+		$jqo.btnConvert = $('#btn_convert');
+		$jqo.btnCopyToClipboard = $('#btn_copy_to_clipboard');
+		$jqo.renderedContent = $('#rendered_content');
 
-		$('button').click(function(){
-			
-			$('#content').html(marked($pt.val()));
+		//$jqo.pt.val("Enter markdown text here.");
+		//$jqo.ph.val("Text converted from markdown to HTML will appear here.");
+
+		$jqo.btnConvert.click(function(){
+			var convertedText = marked($jqo.pt.val());
+			$jqo.ph.val(convertedText)
+			$jqo.renderedContent.html(convertedText);
+		});
+
+		$jqo.btnCopyToClipboard.click(function(){
+			copyToClipboard($jqo.ph.val());
 		});
 	});
 </script>	
