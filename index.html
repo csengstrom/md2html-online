@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Markdown Lib Usage</title>
+	<!-- https://github.com/chjj/marked  -->
+	<link href="css/foundation/foundation.min.css" rel="stylesheet">
+	<style>.page-wrapper{margin:20px;}</style>
+</head>
+<body>
+<div class="page-wrapper">
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<h3>MarkDown in browser &mdash; Rendered by <em>marked.js</em></h3>
+	<div id="content"></div>
+	<textarea name="plain" id="plain_text" cols="115" rows="20"></textarea>
+	
+	<button type="button" class="large button">convert</button>
+
+<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+</div> 
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script> -->
+<script src="js/jquery/jquery.min.js"></script>
+<script src="js/marked-lib/marked.js"></script>
+<script>
+	$(document).ready(function(){
+		//document.getElementById('content').innerHTML = marked('# Marked in browser\n\nRendered by **marked**.');
+		var 
+			$pt = $('#plain_text');
+			md = '# Heading 1\n\n';
+			md += 'Paragraph text.\n\n';
+			md += '## Heading 2 - Link\n\n';
+			md += 'https://safeweb.norton.com/safety\n\n';
+			md += '## Heading 3 - >\n\n';
+			md += '> **Comment Box**\n> \n> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet recusandae repellendus, illo explicabo, saepe necessitatibus. Maiores dolore, officia necessitatibus placeat excepturi aliquid sit soluta modi itaque asperiores! Itaque, ex, deserunt';
+			md += '- bullet 1\n';
+			md += '- bullet 2\n';
+			md += '- bullet 3\n\n\n';
+			md += '| Year | Temperature (low) | Temperature (high) |  \n';
+			md += '| ---- | ----------------- | -------------------|  \n';
+			md += '| 1900 |               -10 |                 25 |  \n';
+			md += '| 1910 |               -15 |                 30 |  \n';
+			md += '| 1920 | ';
+		$pt.val(md);
+
+		$('button').click(function(){
+			
+			$('#content').html(marked($pt.val()));
+		});
+	});
+</script>	
+</body>
+</html>
