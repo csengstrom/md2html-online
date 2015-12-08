@@ -26,6 +26,7 @@
 		<div class="tight">Insert Example Markdown</div>
 	  <button id="btn_headings" type="button" class="tiny button tight">headings</button>
 	  <button id="btn_ul" type="button" class="tiny button tight">list</button>
+	  <button id="btn_md_all" type="button" class="tiny button tight">comprehensive</button>
 	</div>
 </div>
 <div class="row">
@@ -62,6 +63,7 @@
 		$jqo.renderedContent = $('#rendered_content');
 		$jqo.btnHeadings = $('#btn_headings');
 		$jqo.btnList = $('#btn_ul');
+		$jqo.btnAll = $('#btn_md_all');
 
 		//$jqo.pt.val("Enter markdown text here.");
 		//$jqo.ph.val("Text converted from markdown to HTML will appear here.");
@@ -90,6 +92,25 @@
 			md += "  - Item 2a\n";
 			md += "  - Item 2b\n";
 			md += "- Item 3\n";
+			$jqo.pt.val(md);
+		});
+		$jqo.btnAll.click(function(){
+			var md = '# Heading 1\n\n';
+			md += 'Paragraph text.\n\n';
+			md += '## Heading 2 - Link\n\n';
+			md += 'https://safeweb.norton.com/safety\n\n';
+			md += '## Heading 3 - >\n\n';
+			md += '> **Comment Box**\n> \n> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet recusandae repellendus, illo explicabo, saepe necessitatibus. Maiores dolore, officia necessitatibus placeat excepturi aliquid sit soluta modi itaque asperiores! Itaque, ex, deserunt\n\n';
+			md += '- bullet 1\n';
+			md += '- bullet 2\n';
+			md += '  - bullet 2a\n';
+			md += '  - bullet 2b\n';
+			md += '- bullet 3\n\n\n';
+			md += '| Year | Temperature (low) | Temperature (high) |  \n';
+			md += '| ---- | ----------------- | -------------------|  \n';
+			md += '| 1900 |               -10 |                 25 |  \n';
+			md += '| 1910 |               -15 |                 30 |  \n';
+			md += '| 1920 | &nbsp; | &nbsp; |\n';
 			$jqo.pt.val(md);
 		});
 	});
