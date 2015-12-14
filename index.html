@@ -36,7 +36,8 @@
 	</div>
 	<div class="large-4 medium-12 small-12 columns">
 		<textarea name="plain" id="plain_html" cols="115" rows="12" placeholder="Text converted from markdown to HTML will appear here."></textarea>
-		<button id="btn_copy_to_clipboard" type="button" class="small button">Copy to Clipboard</button>
+		<button id="btn_copy_to_clipboard" type="button" class="clip-btn small button" data-clipboard-target="#plain_html" data-clipboard-action="copy">Cut to Clipboard</button>
+		<span class="copy-status"></span>
 	</div> 
 </div> 
 <div class="row">
@@ -49,11 +50,13 @@
 </div> 
 <script src="js/jquery/jquery.min.js"></script>
 <script src="js/marked-lib/marked.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.5/clipboard.min.js"></script> -->
+<script src="js/clipboard.min.js"></script>
 <script>
 	var $jqo = {};
-	var copyToClipboard;
+	var copyToClipboard, clipboard;
 	copyToClipboard = function(text){
-		window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
+		//window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
 	};
 	$(document).ready(function(){
 		$jqo.pt = $('#plain_text');
@@ -64,18 +67,24 @@
 		$jqo.btnHeadings = $('#btn_headings');
 		$jqo.btnList = $('#btn_ul');
 		$jqo.btnAll = $('#btn_md_all');
+		$jqo.clipboard = new Clipboard('.clip-btn'); // not exactly a jqo :)
+		$jqo.copyStatus = $('.copy-status');
 
 		//$jqo.pt.val("Enter markdown text here.");
 		//$jqo.ph.val("Text converted from markdown to HTML will appear here.");
+		$jqo.copyStatus.css({
+			'display': 'none',
+			'font-weight': 'bold'
+		});
 
 		$jqo.btnConvert.click(function(){
 			var convertedText = marked($jqo.pt.val());
 			$jqo.ph.val(convertedText)
 			$jqo.renderedContent.html(convertedText);
 		});
-		$jqo.btnCopyToClipboard.click(function(){
+		/*$jqo.btnCopyToClipboard.click(function(){
 			copyToClipboard($jqo.ph.val());
-		});
+		});*/
 		$jqo.btnHeadings.click(function(){
 			var md = "# h1 Heading\n";
 			md += "## h2 Heading\n";
@@ -113,6 +122,23 @@
 			md += '| 1920 | &nbsp; | &nbsp; |\n';
 			$jqo.pt.val(md);
 		});
+		$jqo.clipboard.on('success', function(e) {
+	        console.log(e);
+	        $jqo.copyStatus.css('color', '#00880E');
+	        $jqo.copyStatus.html('Copied!');
+	        // $jqo.copyStatus.fadeIn('slow');
+	        // $jqo.copyStatus.fadeOut('slow');
+	        //$jqo.copyStatus.fadeIn(function(){ $jqo.copyStatus.next().fadeOut(); });
+	        //$jqo.copyStatus.fadeIn().next().delay(500).fadeOutn();
+	        $jqo.copyStatus.fadeIn(400).delay(200).fadeOut(600)
+	    });
+	    $jqo.clipboard.on('error', function(e) {
+	        console.log(e);
+	        $jqo.copyStatus.css('color', '#BE1705');
+	        $jqo.copyStatus.text('Error: Use Ctrl+C');
+	        $jqo.copyStatus.fadeIn( "slow" );
+	        $jqo.copyStatus.fadeOut( "slow" );
+	    });
 	});
 </script>	
 </body>
