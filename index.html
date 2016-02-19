@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>md2html</title>
-	<!-- https://github.com/chjj/marked  -->
+	<title>Online Markdown to HTML Demo</title>
 	<link href="css/foundation/foundation.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/modified-output2.css">
 	<style>
 		.page-wrapper{
 			margin:20px;}
@@ -15,6 +14,15 @@
 			text-transform: uppercase;}
 		.rendered h3{
 			color: #777;}
+		.btn-readme{
+			float: right;
+		}
+		.button-clear{
+			background: #0d5280;
+		}
+		#plain_html{
+			margin-top: 58px;
+		}
 	</style>
 </head>
 <body>
@@ -22,17 +30,20 @@
 <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 <h1 class="text-center">Markdown to HTML Converter</h1>
 <div class="row">
-	<div class="large-12 columns">
-		<div class="tight">Insert Example Markdown</div>
-	  <button id="btn_headings" type="button" class="tiny button tight">headings</button>
-	  <button id="btn_ul" type="button" class="tiny button tight">list</button>
-	  <button id="btn_md_all" type="button" class="tiny button tight">comprehensive</button>
-	</div>
-</div>
-<div class="row">
-	<div class="large-8 columns">
+	<div class="large-8 medium-12 small-12 columns">
+		<div class="row">
+			<div class="small-12 columns">
+				<div class="tight">Insert Example Markdown</div>
+			  <button id="btn_headings" type="button" class="tiny button tight">headings</button>
+			  <button id="btn_ul" type="button" class="tiny button tight">list</button>
+			  <button id="btn_code" type="button" class="tiny button tight">code</button>
+			  <button id="btn_md_all" type="button" class="tiny button tight">combined</button>
+			  <button id="btn_readme" type="button" class="tiny button tight alert btn-readme">README.md</button>
+			</div>
+		</div>
 		<textarea name="plain" id="plain_text" cols="115" rows="12" placeholder="Enter or paste markdown text here."></textarea>
 		<button id="btn_convert" type="button" class="small button">CONVERT</button>
+		<button id="btn_clear" type="button" class="small button button-clear">Clear</button>
 	</div>
 	<div class="large-4 medium-12 small-12 columns">
 		<textarea name="plain" id="plain_html" cols="115" rows="12" placeholder="Text converted from markdown to HTML will appear here."></textarea>
@@ -43,6 +54,7 @@
 <div class="row">
 	<div class="large-12 columns rendered">
 		<h3>Rendered HTML &#8681;</h3>
+		<hr>
 		<div id="rendered_content"></div>
 	</div>
 </div>
@@ -50,96 +62,7 @@
 </div> 
 <script src="js/jquery/jquery.min.js"></script>
 <script src="js/marked-lib/marked.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.5/clipboard.min.js"></script> -->
 <script src="js/clipboard.min.js"></script>
-<script>
-	var $jqo = {};
-	var copyToClipboard, clipboard;
-	copyToClipboard = function(text){
-		//window.prompt("Copy to clipboard: Ctrl+C, Enter", text);
-	};
-	$(document).ready(function(){
-		$jqo.pt = $('#plain_text');
-		$jqo.ph = $('#plain_html');
-		$jqo.btnConvert = $('#btn_convert');
-		$jqo.btnCopyToClipboard = $('#btn_copy_to_clipboard');
-		$jqo.renderedContent = $('#rendered_content');
-		$jqo.btnHeadings = $('#btn_headings');
-		$jqo.btnList = $('#btn_ul');
-		$jqo.btnAll = $('#btn_md_all');
-		$jqo.clipboard = new Clipboard('.clip-btn'); // not exactly a jqo :)
-		$jqo.copyStatus = $('.copy-status');
-
-		//$jqo.pt.val("Enter markdown text here.");
-		//$jqo.ph.val("Text converted from markdown to HTML will appear here.");
-		$jqo.copyStatus.css({
-			'display': 'none',
-			'font-weight': 'bold'
-		});
-
-		$jqo.btnConvert.click(function(){
-			var convertedText = marked($jqo.pt.val());
-			$jqo.ph.val(convertedText)
-			$jqo.renderedContent.html(convertedText);
-		});
-		/*$jqo.btnCopyToClipboard.click(function(){
-			copyToClipboard($jqo.ph.val());
-		});*/
-		$jqo.btnHeadings.click(function(){
-			var md = "# h1 Heading\n";
-			md += "## h2 Heading\n";
-			md += "### h3 Heading\n";
-			md += "#### h4 Heading\n";
-			md += "##### h5 Heading\n";
-			md += "###### h6 Heading\n";
-			$jqo.pt.val(md);
-		});
-		$jqo.btnList.click(function(){
-			var md = "# List\n";
-			md += "- Item 1\n";
-			md += "- Item 2\n";
-			md += "  - Item 2a\n";
-			md += "  - Item 2b\n";
-			md += "- Item 3\n";
-			$jqo.pt.val(md);
-		});
-		$jqo.btnAll.click(function(){
-			var md = '# Heading 1\n\n';
-			md += 'Paragraph text.\n\n';
-			md += '## Heading 2 - Link\n\n';
-			md += 'https://safeweb.norton.com/safety\n\n';
-			md += '## Heading 3 - >\n\n';
-			md += '> **Comment Box**\n> \n> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet recusandae repellendus, illo explicabo, saepe necessitatibus. Maiores dolore, officia necessitatibus placeat excepturi aliquid sit soluta modi itaque asperiores! Itaque, ex, deserunt\n\n';
-			md += '- bullet 1\n';
-			md += '- bullet 2\n';
-			md += '  - bullet 2a\n';
-			md += '  - bullet 2b\n';
-			md += '- bullet 3\n\n\n';
-			md += '| Year | Temperature (low) | Temperature (high) |  \n';
-			md += '| ---- | ----------------- | -------------------|  \n';
-			md += '| 1900 |               -10 |                 25 |  \n';
-			md += '| 1910 |               -15 |                 30 |  \n';
-			md += '| 1920 | &nbsp; | &nbsp; |\n';
-			$jqo.pt.val(md);
-		});
-		$jqo.clipboard.on('success', function(e) {
-	        console.log(e);
-	        $jqo.copyStatus.css('color', '#00880E');
-	        $jqo.copyStatus.html('Copied!');
-	        // $jqo.copyStatus.fadeIn('slow');
-	        // $jqo.copyStatus.fadeOut('slow');
-	        //$jqo.copyStatus.fadeIn(function(){ $jqo.copyStatus.next().fadeOut(); });
-	        //$jqo.copyStatus.fadeIn().next().delay(500).fadeOutn();
-	        $jqo.copyStatus.fadeIn(400).delay(200).fadeOut(600)
-	    });
-	    $jqo.clipboard.on('error', function(e) {
-	        console.log(e);
-	        $jqo.copyStatus.css('color', '#BE1705');
-	        $jqo.copyStatus.text('Error: Use Ctrl+C');
-	        $jqo.copyStatus.fadeIn( "slow" );
-	        $jqo.copyStatus.fadeOut( "slow" );
-	    });
-	});
-</script>	
+<script src="js/app.js"></script>
 </body>
 </html>
