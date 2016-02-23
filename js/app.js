@@ -136,7 +136,9 @@ bindEvents = function(){
 		md += '- [jQuery](http://jquery.com/download/)\n';
 		md += '- [Foundation](http://foundation.zurb.com/sites/getting-started.html)\n';
 		md += '- [marked-js](https://github.com/chjj/marked)\n';
-		md += '- [clipboard.js](https://zenorocha.github.io/clipboard.js)\n';
+		md += '- [clipboard.js](https://zenorocha.github.io/clipboard.js)\n\n';
+		md += '### GitHub Source\n\n';
+		md += '- [md2html-online](https://github.com/csengstrom/md2html-online)\n';
 		$j.pt.val(md);
 		$j.btnConvert.trigger('click');
 	});
