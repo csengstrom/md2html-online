@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Online Markdown to HTML Demo</title>
 	<link href="css/foundation/foundation.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/font-awesome-4.5.0/font-awesome.min.css">
 	<link rel="stylesheet" href="css/modified-output2.css">
 	<style>
 		.page-wrapper{
@@ -15,7 +16,7 @@
 			text-transform: uppercase;}
 		.rendered h3{
 			color: #777;}
-		.btn-readme{
+		.btn-readme, .links{
 			float: right;
 		}
 		.button-clear{
@@ -45,6 +46,11 @@
 		<textarea name="plain" id="plain_text" cols="115" rows="12" placeholder="Enter or paste markdown text here."></textarea>
 		<button id="btn_convert" type="button" class="small button">CONVERT</button>
 		<button id="btn_clear" type="button" class="small button button-clear">Clear</button>
+		<span class="links">
+			<i class="fa fa-github fa-lg"></i> &nbsp; <a href="https://github.com/csengstrom/md2html-online">GitHub</a> 
+			&nbsp; | &nbsp;
+			<i class="fa fa-wordpress fa-1"></i> &nbsp; <a href="http://codebehold.com/2016/02/19/markdown-to-html/">Blog</a>			 
+		</span>
 	</div>
 	<div class="large-4 medium-12 small-12 columns">
 		<textarea name="plain" id="plain_html" cols="115" rows="12" placeholder="Text converted from markdown to HTML will appear here."></textarea>

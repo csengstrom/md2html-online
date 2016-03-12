@@ -1,10 +1,21 @@
-README.md
+# YAM2H
 
-# md2html-online demo
+**Yet Another Markdown To HTML Converter**
 
-This app demonstrates the conversion of markdown to HTML via javascript. Example markdown may be generated or manually entered/pasted into the text box whose contents will be converted at the click of a button.
+> See how you can enable your site with markdown capability
 
-Upon conversion, the HTML source code is presented in another text box with click-to-copy functionality.  The HTML is also rendered.
+YAM2H demonstrates the conversion of markdown to HTML via JavaScript in a web browser.
+
+### Markdown, HTML &amp; Results Displayed
+
+- Write markdown in your browser &mdash; or click buttons to generate example markdown for you
+- Click the "Convert" button
+- Another text box displays the generated HTML code
+- The browser then renders the HTML code, displaying the final result
+
+[<i class="fa fa-eye fa-lg"></i> &nbsp; Demo](http://codebehold.com/code/poc/md2html-online/)
+
+<!--[<i class="fa fa-github fa-lg"></i> &nbsp; GitHub](https://github.com/csengstrom/md2html-online)-->
 
 ### Dependencies
 
@@ -13,6 +24,3 @@ Upon conversion, the HTML source code is presented in another text box with clic
 - [marked-js](https://github.com/chjj/marked)
 - [clipboard.js](https://zenorocha.github.io/clipboard.js)
 
-### Demo
-
-http://codebehold.com/code/poc/md2html-online/
