@@ -16,7 +16,9 @@ $j = { //jQuery (dom) objects ($jqo)
 	btnReadme: $('#btn_readme'),
 	btnAll: $('#btn_md_all'),
 	copyStatus: $('.copy-status'),
-	clipboard: $('.clip-btn')
+	clipboard: $('.clip-btn'),
+	header: $('.header'),
+	downArrow: $('.down-arrow')
 },
 
 // Private funcs
@@ -51,6 +53,10 @@ init = function(){
 bindEvents = function(){
 //================================
 	// clipboard handler in clipboard.min.js
+
+	$j.downArrow.click(function(){
+		$j.header.slideToggle();
+	});
 
 	$j.btnConvert.click(function(){
 		var convertedText = marked($j.pt.val());
@@ -128,16 +134,27 @@ bindEvents = function(){
 		$j.pt.val(md);
 	});
 	$j.btnReadme.click(function(){
-		var md = 'README.md\n\n';
-		md += '# online-markdown-converter\n\n';
+		var md = 'README.md ';
+		//md += ' &nbsp; | &nbsp; ';
+		//md += '<i class="fa fa-github fa-lg"></i> &nbsp; [GitHub](https://github.com/csengstrom/md2html-online)';
+		//md += ' &nbsp; | &nbsp; ';
+		//md += '<i class="fa fa-wordpress fa-1"></i> &nbsp; [Blog](http://codebehold.com/2016/02/19/markdown-to-html/)\n\n';
+		md += '# YAM2H\n\n';
+		md += '### Yet Another Markdown To HTML Converter\n\n';
 		md += '08 December 2015 (Tuesday)\n\n';
-		md += 'This app converts markdown pasted into a textbox into HTML.\n\n';
+		md += 'YAM2H demonstrates the conversion of markdown to HTML via JavaScript in a web browser.\n\n';
+		md += '![](img/app.jpg)\n\n';
+		md += '### Markdown, HTML &amp; Results Displayed\n\n';
+		md += '- Write markdown in your browser &mdash; or click buttons to generate example markdown for you\n';
+		md += '- Click the `Convert` button\n';
+		md += '- Another text box displays the generated HTML code\n';
+		md += '- The browser then renders the HTML code, displaying the final result\n\n';
 		md += '### Dependencies\n\n';
 		md += '- [jQuery](http://jquery.com/download/)\n';
 		md += '- [Foundation](http://foundation.zurb.com/sites/getting-started.html)\n';
 		md += '- [marked-js](https://github.com/chjj/marked)\n';
-		md += '- [clipboard.js](https://zenorocha.github.io/clipboard.js)\n';
-		$j.pt.val(md);
+		md += '- [clipboard.js](https://zenorocha.github.io/clipboard.js)\n\n';
+	$j.pt.val(md);
 		$j.btnConvert.trigger('click');
 	});
 	$j.clipboard.on('success', function(e) {
