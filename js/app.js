@@ -22,7 +22,7 @@ $j = { //jQuery (dom) objects ($jqo)
 },
 
 // Private funcs
-init, bindEvents, clipboard,  
+init, bindEvents, clipboard, initFileDrop,
 
 f = { // API
 	init: null
@@ -47,7 +47,62 @@ init = function(){
 
 	// init & binds, clipboard.min.js, v1.5.5
 	new Clipboard($j.clipboard.selector);
+
+	if($.support.fileDrop){
+		initFileDrop();
+	}else{
+		alert('Your browser does not support file drag-n-drop :(');
+	}
 };
+
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+initFileDrop = function(){
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	var $count = $("#FILE_COUNT");
+
+	//Add file drag-n-drop to the HTML element
+	$('html').fileDrop({ // can drop file anywhere on the page
+		decodeBase64: false,
+		removeDataUriScheme: false,
+		onFileRead: function(fileCollection){
+
+			// if(console){
+			// 	console.clear();
+			// 	console.log("---File Collection---");
+			// 	console.log(fileCollection);
+			// }
+
+			var newHtml='';
+			var newText='';
+			
+			//Loop through each file that was dropped
+			$.each(fileCollection, function(i){
+
+				if(this.type.indexOf('image')>=0){
+					newHtml += '<img src="' + this.data + '"/>';
+					if(i !== fileCollection.length-1){
+						newHtml += "<hr />";
+					}
+				}else{
+					var noScheme = $.removeUriScheme(this.data);
+					var base64Decoded = window.atob(noScheme);
+					newText = base64Decoded;
+				}
+			});
+
+			// Set the text about how many files were dropped. Make it plural when there is more than one!
+			var countText = fileCollection.length + ' file' + ( fileCollection.length === 1 ? '' : 's' ) + ' dropped!';
+			$count.text(countText);
+
+			// Show the dropped text
+			$j.pt.html(newText);
+			// ... and convert it
+			$j.btnConvert.trigger('click');
+		}
+	});
+};
+
+
 
 //================================
 bindEvents = function(){
