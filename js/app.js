@@ -22,7 +22,7 @@ $j = { //jQuery (dom) objects ($jqo)
 },
 
 // Private funcs
-init, bindEvents, clipboard, initFileDrop,
+init, bindEvents, clipboard, initFileDrop, clean,
 
 f = { // API
 	init: null
@@ -53,7 +53,12 @@ init = function(){
 	}else{
 		alert('Your browser does not support file drag-n-drop :(');
 	}
+
+	// cse
+	setTimeout ( "clean()", 200 ); 
 };
+
+
 
 //- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 initFileDrop = function(){
@@ -117,8 +122,9 @@ bindEvents = function(){
 		var convertedText = marked($j.pt.val());
 		$j.ph.val(convertedText)
 		$j.renderedContent.html(convertedText);
-		});
-		$j.btnClear.click(function(){
+		SyntaxHighlighter.highlight($j.renderedContent);
+	});
+	$j.btnClear.click(function(){
 		$j.pt.val('');
 	});
 	$j.btnHeadings.click(function(){
@@ -238,6 +244,14 @@ return {APP : _app};
 //✹✹✹✹✹✹✹✹✹✹✹✹✹✹✹✹✹✹
 }(jQuery)); // End closure
 
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+clean = function(){
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -	
+    var 
+      $tnt = $('.toolbar');
+    $tnt.css('display', 'none');
+    $('.page-container').css('visibility', 'visible');
+};
 
 $(document).ready(function() {
   $ΞΞmarkdownΔhtmlΞΞ$_app.APP.init();

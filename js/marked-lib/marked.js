@@ -770,18 +770,35 @@ Renderer.prototype.code = function(code, lang, escaped) {
     }
   }
 
+  //cse
+  // if (!lang) {
+  //   return '<pre><code>'
+  //     + (escaped ? code : escape(code, true))
+  //     + '\n</code></pre>';
+  // }
+
   if (!lang) {
-    return '<pre><code>'
+    return '<pre>'
       + (escaped ? code : escape(code, true))
-      + '\n</code></pre>';
+      + '\n</pre>';
   }
 
-  return '<pre><code class="'
+  //cse
+  // return '<pre><code class="'
+  //   + this.options.langPrefix
+  //   + escape(lang, true)
+  //   //cse  + '">'
+  //   + ';">'
+  //   + (escaped ? code : escape(code, true))
+  //   + '\n</code></pre>\n';
+
+  return '<pre class="'
     + this.options.langPrefix
     + escape(lang, true)
-    + '">'
+    //cse  + '">'
+    + ';">'
     + (escaped ? code : escape(code, true))
-    + '\n</code></pre>\n';
+    + '\n</pre>\n';
 };
 
 Renderer.prototype.blockquote = function(quote) {
@@ -855,7 +872,8 @@ Renderer.prototype.em = function(text) {
 };
 
 Renderer.prototype.codespan = function(text) {
-  return '<code>' + text + '</code>';
+  //cse  return '<code>' + text + '</code>';
+  return '<pre>' + text + '</pre>';
 };
 
 Renderer.prototype.br = function() {
@@ -1248,7 +1266,8 @@ marked.defaults = {
   smartLists: false,
   silent: false,
   highlight: null,
-  langPrefix: 'lang-',
+  // cse  langPrefix: 'lang-',
+  langPrefix: 'brush: ',
   smartypants: false,
   headerPrefix: '',
   renderer: new Renderer,
