@@ -22,10 +22,12 @@ $j = { //jQuery (dom) objects ($jqo)
 },
 
 // Private funcs
-init, bindEvents, clipboard, initFileDrop, clean,
+init, bindEvents, clipboard, initFileDrop, clean, 
+//pausecomp,
 
 f = { // API
-	init: null
+	init: null,
+	clean: null
 },
 
 //................................
@@ -53,12 +55,7 @@ init = function(){
 	}else{
 		alert('Your browser does not support file drag-n-drop :(');
 	}
-
-	// cse
-	setTimeout ( "clean()", 200 ); 
 };
-
-
 
 //- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 initFileDrop = function(){
@@ -107,8 +104,6 @@ initFileDrop = function(){
 	});
 };
 
-
-
 //================================
 bindEvents = function(){
 //================================
@@ -123,6 +118,9 @@ bindEvents = function(){
 		$j.ph.val(convertedText)
 		$j.renderedContent.html(convertedText);
 		SyntaxHighlighter.highlight($j.renderedContent);
+		
+		//pausecomp(200);
+		//setTimeout("clean()", 2000);
 	});
 	$j.btnClear.click(function(){
 		$j.pt.val('');
@@ -148,6 +146,7 @@ bindEvents = function(){
 	$j.btnCode.click(function(){
 		var md = "## Some Code\n\n";
 		md += "> box your code with three grave symbols — <kbd>\\`</kbd> <kbd>\\`</kbd> <kbd>\\`</kbd>\n\n";
+		md += "### HTML\n\n";
 		md += "```html\n";
 		md += "<!DOCTYPE html>\n";
 		md += '<html lang="en">\n';
@@ -159,6 +158,38 @@ bindEvents = function(){
 		md += "</body>\n";
 		md += "</html>\n";
 		md += "```\n\n";
+		
+		md += "### CSS\n\n";
+		md += "```css\n";
+		md += "pre {\n";
+		md += "  overflow: auto;\n";
+		md += "}\n\n";
+		md += "code,\n";
+		md += "kbd,\n";
+		md += "pre,\n";
+		md += "samp{\n";
+		md += "  font-family: monospace;\n";
+		md += "  font-size: 1em;\n";
+		md += "}\n";
+		md += "```\n\n";
+
+		md += "### JavaScript\n\n";
+		md += "```js\n";
+		md += "//Loop through each file that was dropped\n";
+		md += "$.each(fileCollection, function(i){\n";
+		md += "	if(this.type.indexOf('image')>=0){\n";
+		md += "		newHtml += '<img src=\"' + this.data + '\"/>';\n";
+		md += "		if(i !== fileCollection.length-1){\n";
+		md += "			newHtml += \"<hr />\";\n";
+		md += "		}\n";
+		md += "	}else{\n";
+		md += "		var noScheme = $.removeUriScheme(this.data);\n";
+		md += "		var base64Decoded = window.atob(noScheme);\n";
+		md += "		newText = base64Decoded;\n";
+		md += "	}\n";
+		md += "});\n";
+		md += "```\n\n";
+
 		$j.pt.val(md);
 	});
 	$j.btnAll.click(function(){
@@ -233,26 +264,46 @@ bindEvents = function(){
 	});
 };
 
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+pausecomp = function(millis){
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    var date = new Date();
+    var curDate = null;
+    do { curDate = new Date(); }
+    while(curDate-date < millis);
+}
+
+
 // Public functions
 //❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚
 _app.init = function (){
   bindEvents();
   init();
 };
+
 //❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚
 return {APP : _app}; 
+
 //✹✹✹✹✹✹✹✹✹✹✹✹✹✹✹✹✹✹
 }(jQuery)); // End closure
 
 //- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-clean = function(){
+// clean = function(){
 //- - - - - - - - - - - - - - - - - - - - - - - - - - - - -	
-    var 
-      $tnt = $('.toolbar');
-    $tnt.css('display', 'none');
-    $('.page-container').css('visibility', 'visible');
-};
+//     var 
+//       $tnt = $('a.toolbar'),
+//       $tntItem = $('a.toolbar-item'),
+//       $tntCommandHelp = $('a.command-help'),
+//       $tntHelp = $('a.help');
+//     $tnt.css('display', 'none');
+//     $tntItem.css('display', 'none'),
+//     $tntCommandHelp.css('display', 'none'),
+//     $tntHelp.css('display', 'none');
+//     $('.page-container').css('visibility', 'visible');
+// };
 
 $(document).ready(function() {
   $ΞΞmarkdownΔhtmlΞΞ$_app.APP.init();
 });
+
+
