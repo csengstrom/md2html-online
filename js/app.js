@@ -23,7 +23,6 @@ $j = { //jQuery (dom) objects ($jqo)
 
 // Private funcs
 init, bindEvents, clipboard, initFileDrop, clean, 
-//pausecomp,
 
 f = { // API
 	init: null,
@@ -34,7 +33,7 @@ f = { // API
 _app = { $jqo: null, fn: null };
 //................................
 
-// End of decls
+// End of decls - - - - - - - - - 
 
 _app.$jqo = $j;
 _app.fn = f;
@@ -104,6 +103,15 @@ initFileDrop = function(){
 	});
 };
 
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+clean = function(){
+//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -	
+    var 
+      $tnt = $('div.toolbar');
+    $tnt.css('display', 'none');
+    $('.page-container').css('visibility', 'visible');
+};
+
 //================================
 bindEvents = function(){
 //================================
@@ -118,13 +126,13 @@ bindEvents = function(){
 		$j.ph.val(convertedText)
 		$j.renderedContent.html(convertedText);
 		SyntaxHighlighter.highlight($j.renderedContent);
-		
-		//pausecomp(200);
-		//setTimeout("clean()", 2000);
+		setTimeout(clean, 200);
 	});
+
 	$j.btnClear.click(function(){
 		$j.pt.val('');
 	});
+
 	$j.btnHeadings.click(function(){
 		var md = "# h1 Heading\n";
 		md += "## h2 Heading\n";
@@ -133,7 +141,8 @@ bindEvents = function(){
 		md += "##### h5 Heading\n";
 		md += "###### h6 Heading\n";
 	$j.pt.val(md);
-	});
+});
+
 	$j.btnList.click(function(){
 		var md = "# List\n";
 		md += "- Item 1\n";
@@ -143,9 +152,11 @@ bindEvents = function(){
 		md += "- Item 3\n";
 		$j.pt.val(md);
 	});
+
 	$j.btnCode.click(function(){
 		var md = "## Some Code\n\n";
 		md += "> box your code with three grave symbols — <kbd>\\`</kbd> <kbd>\\`</kbd> <kbd>\\`</kbd>\n\n";
+		// HTML
 		md += "### HTML\n\n";
 		md += "```html\n";
 		md += "<!DOCTYPE html>\n";
@@ -158,7 +169,7 @@ bindEvents = function(){
 		md += "</body>\n";
 		md += "</html>\n";
 		md += "```\n\n";
-		
+		// CSS
 		md += "### CSS\n\n";
 		md += "```css\n";
 		md += "pre {\n";
@@ -172,7 +183,7 @@ bindEvents = function(){
 		md += "  font-size: 1em;\n";
 		md += "}\n";
 		md += "```\n\n";
-
+		// JS
 		md += "### JavaScript\n\n";
 		md += "```js\n";
 		md += "//Loop through each file that was dropped\n";
@@ -190,8 +201,11 @@ bindEvents = function(){
 		md += "});\n";
 		md += "```\n\n";
 
+		md += "[Syntax highlighter credit and thanks to Alex Gorbatchev](http://alexgorbatchev.com/SyntaxHighlighter/)\n\n";
+
 		$j.pt.val(md);
 	});
+
 	$j.btnAll.click(function(){
 		var md = '# Heading 1\n\n';
 		md += 'Paragraph text.\n\n';
@@ -225,12 +239,9 @@ bindEvents = function(){
 		md += "```\n\n";
 		$j.pt.val(md);
 	});
+
 	$j.btnReadme.click(function(){
 		var md = 'README.md ';
-		//md += ' &nbsp; | &nbsp; ';
-		//md += '<i class="fa fa-github fa-lg"></i> &nbsp; [GitHub](https://github.com/csengstrom/md2html-online)';
-		//md += ' &nbsp; | &nbsp; ';
-		//md += '<i class="fa fa-wordpress fa-1"></i> &nbsp; [Blog](http://codebehold.com/2016/02/19/markdown-to-html/)\n\n';
 		md += '# YAM2H\n\n';
 		md += '### Yet Another Markdown To HTML Converter\n\n';
 		md += '08 December 2015 (Tuesday)\n\n';
@@ -249,30 +260,23 @@ bindEvents = function(){
 	$j.pt.val(md);
 		$j.btnConvert.trigger('click');
 	});
+
 	$j.clipboard.on('success', function(e) {
-		console.log(e);
+		//console.log(e);
 		$j.copyStatus.css('color', '#00880E');
 		$j.copyStatus.html('Copied!');
 		$j.copyStatus.fadeIn(400).delay(200).fadeOut(600)
 	});
+
+
 	$j.clipboard.on('error', function(e) {
-		console.log(e);
+		//console.log(e);
 		$j.copyStatus.css('color', '#BE1705');
 		$j.copyStatus.text('Error: Use Ctrl+C');
 		$j.copyStatus.fadeIn( "slow" );
 		$j.copyStatus.fadeOut( "slow" );
 	});
 };
-
-//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-pausecomp = function(millis){
-//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    var date = new Date();
-    var curDate = null;
-    do { curDate = new Date(); }
-    while(curDate-date < millis);
-}
-
 
 // Public functions
 //❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚
@@ -283,24 +287,8 @@ _app.init = function (){
 
 //❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚❚
 return {APP : _app}; 
-
 //✹✹✹✹✹✹✹✹✹✹✹✹✹✹✹✹✹✹
 }(jQuery)); // End closure
-
-//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// clean = function(){
-//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -	
-//     var 
-//       $tnt = $('a.toolbar'),
-//       $tntItem = $('a.toolbar-item'),
-//       $tntCommandHelp = $('a.command-help'),
-//       $tntHelp = $('a.help');
-//     $tnt.css('display', 'none');
-//     $tntItem.css('display', 'none'),
-//     $tntCommandHelp.css('display', 'none'),
-//     $tntHelp.css('display', 'none');
-//     $('.page-container').css('visibility', 'visible');
-// };
 
 $(document).ready(function() {
   $ΞΞmarkdownΔhtmlΞΞ$_app.APP.init();

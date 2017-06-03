@@ -1,0 +1,20 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+
+		{
+			"type": "chrome",
+			"request": "launch",
+			"name": "Launch Chrome against cse",
+			"url": "http://cse/codebehold.com/code/poc/md2html-online/index.html",
+			"webRoot": "${workspaceRoot}"
+		},
+		{
+			"type": "chrome",
+			"request": "attach",
+			"name": "Attach to Chrome",
+			"port": 80,
+			"webRoot": "${workspaceRoot}"
+		}
+	]
+}
