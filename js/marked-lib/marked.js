@@ -872,8 +872,7 @@ Renderer.prototype.em = function(text) {
 };
 
 Renderer.prototype.codespan = function(text) {
-  //cse  return '<code>' + text + '</code>';
-  return '<pre>' + text + '</pre>';
+  return '<code>' + text + '</code>';
 };
 
 Renderer.prototype.br = function() {
