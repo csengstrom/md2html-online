@@ -47,7 +47,7 @@ init = function(){
 	});
 
 	// init & binds, clipboard.min.js, v1.5.5
-	new Clipboard($j.clipboard.selector);
+	var clpbrd = new Clipboard($j.clipboard.selector);
 
 	if($.support.fileDrop){
 		initFileDrop();
