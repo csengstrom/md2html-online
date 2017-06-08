@@ -14,6 +14,7 @@ $j = { //jQuery (dom) objects ($jqo)
 	btnList: $('#btn_ul'),
 	btnCode: $('#btn_code'),
 	btnReadme: $('#btn_readme'),
+	btnFileTree: $('#btn_filetree'),
 	btnAll: $('#btn_md_all'),
 	copyStatus: $('.copy-status'),
 	clipboard: $('.clip-btn'),
@@ -134,22 +135,112 @@ bindEvents = function(){
 	});
 
 	$j.btnHeadings.click(function(){
-		var md = "# h1 Heading\n";
-		md += "## h2 Heading\n";
-		md += "### h3 Heading\n";
-		md += "#### h4 Heading\n";
-		md += "##### h5 Heading\n";
-		md += "###### h6 Heading\n";
+		var md = "# h1 Heading\n\n";
+		md += "## h2 Heading\n\n";
+		md += "### h3 Heading\n\n";
+		md += "#### h4 Heading\n\n";
+		md += "##### h5 Heading\n\n";
+		md += "###### h6 Heading\n\n";
 	$j.pt.val(md);
 });
 
 	$j.btnList.click(function(){
-		var md = "# List\n";
+		var md = "# List\n\n";
 		md += "- Item 1\n";
 		md += "- Item 2\n";
 		md += "  - Item 2a\n";
 		md += "  - Item 2b\n";
 		md += "- Item 3\n";
+		$j.pt.val(md);
+	});
+
+	$j.btnFileTree.click(function(){
+		var md = '## Folder Structure\n\n';
+		md += 'This app makes use of `filetree`.css to graphically display hierarchies. The filetree is specified in HTML.\n';
+		md += '<div class="tree">\n';
+		md += '<div class="node">ROOT</div>\n';
+		md += '<div class="children">\n';
+		md += '<div class="node">\n';
+		md += '<div class="icon i-db i-darkred">\n';
+		md += 'Database <span class="sm-txt"><i class="fa fa-info-circle"></i>  MySql v5.0</span>\n';
+		md += '</div>\n';
+		md += '</div>\n';
+		md += '<div class="node">\n';
+		md += '<div class="icon i-folder-open i-gold">\n';
+		md += 'Folder 1\n';
+		md += '</div>\n';
+		md += '</div>\n';
+		md += '<div class="children">\n';
+		md += '<div class="node">\n';
+		md += '<div class="icon i-file-o i-black">\n';
+		md += 'file 1\n';
+		md += '</div>\n';
+		md += '</div>\n';
+		md += '<div class="node">file 2</div>\n';
+		md += '<div class="node">file 3</div>\n';
+		md += '</div>\n';
+		md += '<div class="node">\n';
+		md += '<div class="icon i-folder-open i-dodgerblue">\n';
+		md += 'Folder 2\n';
+		md += '</div>\n';
+		md += '</div>\n';
+		md += '<div class="children">\n';
+		md += '<div class="node">\n';
+		md += '<div class="icon i-folder-closed i-gold">\n';
+		md += 'Folder 2a\n';
+		md += '</div>\n';
+		md += '</div>\n';
+		md += '<div class="node">\n';
+		md += '<div class="icon i-folder-open i-limegreen">\n';
+		md += 'Folder 2b\n';
+		md += '</div>\n';
+		md += '</div>\n';
+		md += '<div class="children">\n';
+		md += '<div class="node">\n';
+		md += '<div class="icon i-folder-open i-gold">\n';
+		md += 'Folder 2b1\n';
+		md += '</div>\n';
+		md += '</div>\n';
+		md += '<div class="children">\n';
+		md += '<div class="node">\n';
+		md += '<div class="icon i-folder-open i-gold">\n';
+		md += '2b1a\n';
+		md += '</div>\n';
+		md += '</div>\n';
+		md += '<div class="children">\n';
+		md += '<div class="node">\n';
+		md += '<div class="icon i-file-code i-darkred">\n';
+		md += 'code file\n';
+		md += '</div>\n';
+		md += '</div>\n';
+		md += '<span class="under-node-txt"><i class="fa fa-arrow-circle-up"></i> COMMENT UNDER md += `NODE</span>\n';
+		md += '</div>\n';
+		md += '<div class="node">\n';
+		md += '<div class="icon i-files">\n';
+		md += 'remaining files &hellip;\n';
+		md += '</div>\n';
+		md += '</div>\n';
+		md += '</div>\n';
+		md += '<div class="node">\n';
+		md += '<div class="icon i-file-text i-slategray">\n';
+		md += 'text file &hellip;\n';
+		md += '</div>\n';
+		md += '</div>\n';
+		md += '</div>\n';
+		md += '<div class="node">\n';
+		md += '<div class="icon i-cog i-mediumseagreen">\n';
+		md += 'Configuration\n';
+		md += '</div>\n';
+		md += '</div>\n';
+		md += '<div class="node">file 3</div>\n';
+		md += '</div>\n';
+		md += '<div class="node">README.md</div>\n';
+		md += '<div class="node">app.component.ts</div>\n';
+		md += '<div class="node">app.module.ts</div>\n';
+		md += '</div>\n';
+		md += '</div>\n\n';
+		md += '### Note\n\n';
+		md += 'Filetree could use some documentation.  For now, the code *is* the documentation.\n';
 		$j.pt.val(md);
 	});
 
@@ -257,7 +348,7 @@ bindEvents = function(){
 		md += '- [Foundation](http://foundation.zurb.com/sites/getting-started.html)\n';
 		md += '- [marked-js](https://github.com/chjj/marked)\n';
 		md += '- [clipboard.js](https://zenorocha.github.io/clipboard.js)\n\n';
-	$j.pt.val(md);
+		$j.pt.val(md);
 		$j.btnConvert.trigger('click');
 	});
 
