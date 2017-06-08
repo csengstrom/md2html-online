@@ -213,7 +213,7 @@ bindEvents = function(){
 		md += 'code file\n';
 		md += '</div>\n';
 		md += '</div>\n';
-		md += '<span class="under-node-txt"><i class="fa fa-arrow-circle-up"></i> COMMENT UNDER md += `NODE</span>\n';
+		md += '<span class="under-node-txt"><i class="fa fa-arrow-circle-up"></i> COMMENT UNDER NODE</span>\n';
 		md += '</div>\n';
 		md += '<div class="node">\n';
 		md += '<div class="icon i-files">\n';
