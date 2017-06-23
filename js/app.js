@@ -19,11 +19,12 @@ $j = { //jQuery (dom) objects ($jqo)
 	copyStatus: $('.copy-status'),
 	clipboard: $('.clip-btn'),
 	header: $('.header'),
-	downArrow: $('.down-arrow')
+	downArrow: $('.down-arrow'),
+	plainText: $('#plain_text')
 },
 
 // Private funcs
-init, bindEvents, clipboard, initFileDrop, clean, 
+init, bindEvents, clipboard, clpbrd, initFileDrop, clean, 
 
 f = { // API
 	init: null,
@@ -48,13 +49,16 @@ init = function(){
 	});
 
 	// init & binds, clipboard.min.js, v1.5.5
-	var clpbrd = new Clipboard($j.clipboard.selector);
+	clpbrd = new Clipboard($j.clipboard.selector);
 
 	if($.support.fileDrop){
 		initFileDrop();
 	}else{
 		alert('Your browser does not support file drag-n-drop :(');
 	}
+
+	$j.plainText.focus();
+	//document.execCommand("Paste");
 };
 
 //- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -132,6 +136,7 @@ bindEvents = function(){
 
 	$j.btnClear.click(function(){
 		$j.pt.val('');
+		$j.plainText.focus();
 	});
 
 	$j.btnHeadings.click(function(){

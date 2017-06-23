@@ -13,6 +13,8 @@ java -jar closure-compiler-v20170521.jar ^
  --js ../../../../libs/syntax_highlighter/js/shBrushDiff.js ^
  --js ../../../../libs/syntax_highlighter/js/shBrushJava.js ^
  --js ../../../../libs/syntax_highlighter/js/shBrushSass.js ^
+ --js ../../../../libs/syntax_highlighter/js/shBrushPhp.js ^
+ --js ../../../../libs/syntax_highlighter/js/shBrushPlain.js ^
  --js foundation/foundation.js  ^
  --js marked-lib/marked.js  ^
  --js clipboard.min.js ^
