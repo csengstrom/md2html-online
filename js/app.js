@@ -20,7 +20,8 @@ $j = { //jQuery (dom) objects ($jqo)
 	clipboard: $('.clip-btn'),
 	header: $('.header'),
 	downArrow: $('.down-arrow'),
-	plainText: $('#plain_text')
+	plainText: $('#plain_text'),
+	fontSelector: $('#font_selector')
 },
 
 // Private funcs
@@ -372,6 +373,44 @@ bindEvents = function(){
 		$j.copyStatus.fadeIn( "slow" );
 		$j.copyStatus.fadeOut( "slow" );
 	});
+
+	$j.fontSelector.change(function() {
+			var str = "";
+			$( "select option:selected" ).each(function() {
+				str += $( this ).text();
+			});
+			//$( "#test" ).text( str );
+			if(str === 'Arial'){
+				$( '#rendered_content *' ).css('font-family', 'Arial,"Helvetica Neue",Helvetica,sans-serif;');
+			}
+			if(str === 'Arial Narrow'){
+				$( '#rendered_content *' ).css('font-family', '"Arial Narrow",Arial,sans-serif');
+			}
+			if(str === 'Verdana'){
+				$( '#rendered_content *' ).css('font-family', 'Verdana,Geneva,sans-serif');
+			}
+			if(str === 'Trebuchet'){
+				$( '#rendered_content *' ).css('font-family', '"Trebuchet MS","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Tahoma,sans-serif');
+			}
+			if(str === 'Tahoma'){
+				$( '#rendered_content *' ).css('font-family', 'Tahoma,Verdana,Segoe,sans-serif');
+			}
+			if(str === 'Times New Roman'){
+				$( '#rendered_content *' ).css('font-family', 'TimesNewRoman,"Times New Roman",Times,Baskerville,Georgia,serif');
+			}
+			if(str === 'Palatino'){
+				$( '#rendered_content *' ).css('font-family', 'Palatino,"Palatino Linotype","Palatino LT STD","Book Antiqua",Georgia,serif');
+			}
+			if(str === 'Georgia'){
+				$( '#rendered_content *' ).css('font-family', 'Georgia,Times,"Times New Roman",serif');
+			}
+			if(str === 'Courier New'){
+				$( '#rendered_content *' ).css('font-family', '"Courier New",Courier,"Lucida Sans Typewriter","Lucida Typewriter",monospace');
+			}
+			if(str === 'Lucida Sans'){
+				$( '#rendered_content *' ).css('font-family', '"Lucida Sans","Lucida Sans Typewriter","Lucida Console",monaco,"Bitstream Vera Sans Mono",monospace');
+			}
+		})
 };
 
 // Public functions
