@@ -161,92 +161,34 @@ bindEvents = function(){
 	});
 
 	$j.btnFileTree.click(function(){
-		var md = '## Folder Structure\n\n';
-		md += 'This app makes use of `filetree`.css to graphically display hierarchies. The filetree is specified in HTML.\n';
-		md += '<div class="tree">\n';
-		md += '<div class="node">ROOT</div>\n';
-		md += '<div class="children">\n';
-		md += '<div class="node">\n';
-		md += '<div class="icon i-db i-darkred">\n';
-		md += 'Database <span class="sm-txt"><i class="fa fa-info-circle"></i>  MySql v5.0</span>\n';
-		md += '</div>\n';
-		md += '</div>\n';
-		md += '<div class="node">\n';
-		md += '<div class="icon i-folder-open i-gold">\n';
-		md += 'Folder 1\n';
-		md += '</div>\n';
-		md += '</div>\n';
-		md += '<div class="children">\n';
-		md += '<div class="node">\n';
-		md += '<div class="icon i-file-o i-black">\n';
-		md += 'file 1\n';
-		md += '</div>\n';
-		md += '</div>\n';
-		md += '<div class="node">file 2</div>\n';
-		md += '<div class="node">file 3</div>\n';
-		md += '</div>\n';
-		md += '<div class="node">\n';
-		md += '<div class="icon i-folder-open i-dodgerblue">\n';
-		md += 'Folder 2\n';
-		md += '</div>\n';
-		md += '</div>\n';
-		md += '<div class="children">\n';
-		md += '<div class="node">\n';
-		md += '<div class="icon i-folder-closed i-gold">\n';
-		md += 'Folder 2a\n';
-		md += '</div>\n';
-		md += '</div>\n';
-		md += '<div class="node">\n';
-		md += '<div class="icon i-folder-open i-limegreen">\n';
-		md += 'Folder 2b\n';
-		md += '</div>\n';
-		md += '</div>\n';
-		md += '<div class="children">\n';
-		md += '<div class="node">\n';
-		md += '<div class="icon i-folder-open i-gold">\n';
-		md += 'Folder 2b1\n';
-		md += '</div>\n';
-		md += '</div>\n';
-		md += '<div class="children">\n';
-		md += '<div class="node">\n';
-		md += '<div class="icon i-folder-open i-gold">\n';
-		md += '2b1a\n';
-		md += '</div>\n';
-		md += '</div>\n';
-		md += '<div class="children">\n';
-		md += '<div class="node">\n';
-		md += '<div class="icon i-file-code i-darkred">\n';
-		md += 'code file\n';
-		md += '</div>\n';
-		md += '</div>\n';
-		md += '<span class="under-node-txt"><i class="fa fa-arrow-circle-up"></i> COMMENT UNDER NODE</span>\n';
-		md += '</div>\n';
-		md += '<div class="node">\n';
-		md += '<div class="icon i-files">\n';
-		md += 'remaining files &hellip;\n';
-		md += '</div>\n';
-		md += '</div>\n';
-		md += '</div>\n';
-		md += '<div class="node">\n';
-		md += '<div class="icon i-file-text i-slategray">\n';
-		md += 'text file &hellip;\n';
-		md += '</div>\n';
-		md += '</div>\n';
-		md += '</div>\n';
-		md += '<div class="node">\n';
-		md += '<div class="icon i-cog i-mediumseagreen">\n';
-		md += 'Configuration\n';
-		md += '</div>\n';
-		md += '</div>\n';
-		md += '<div class="node">file 3</div>\n';
-		md += '</div>\n';
-		md += '<div class="node">README.md</div>\n';
-		md += '<div class="node">app.component.ts</div>\n';
-		md += '<div class="node">app.module.ts</div>\n';
-		md += '</div>\n';
-		md += '</div>\n\n';
-		md += '### Note\n\n';
-		md += 'Filetree could use some documentation.  For now, the code *is* the documentation.\n';
+		var md = '<div class="tree">\n'
+		md += '<div class="node">ROOT</div>\n'
+		md += '<div class="children">\n'
+		md += '<div class="node"><i class="fa fa-folder-open i-gold"></i>Folder</div>\n'
+		md += '<div class="children">\n'
+		md += '<div class="node">\n'
+		md += 'file 1\n'
+		md += '<span class="sm-txt">\n'
+		md += '<i class="fa fa-info-circle"></i>\n'
+		md += 'INLINE COMMENT\n'
+		md += '</span>\n'
+		md += '</div>\n'
+		md += '<div class="node">file 2</div>\n'
+		md += '<div class="node">file 3</div>\n'
+		md += '<span class="under-node-comment">\n'
+		md += '<i class="fa fa-arrow-circle-up"></i> \n'
+		md += 'UNDER NODE COMMENT\n'
+		md += '</span>\n'
+		md += '<div class="node">file 4</div>\n'
+		md += '</div>\n'
+		md += '<div class="node">app.component.ts</div>\n'
+		md += '<div class="node">app.module.ts</div>\n'
+		md += '<div class="node"><i class="fa fa-file-text i-lightcoral">\n'
+		md += '</i>README.md</div>\n'
+		md += '<div class="node"><i class="fa fa-cog i-mediumseagreen"></i>app.config</div>\n'
+		md += '<div class="node"><i class="fa fa-eye"></i><a href="http://codebehold.com/code/example/css-filetree/">demo</a></div>\n'
+		md += '</div>\n'
+		md += '</div>\n'
 		$j.pt.val(md);
 	});
 
