@@ -36,8 +36,14 @@
 		#plain_html{
 			margin-top: 58px;
 		}
-		.down-arrow{
+		.down-arrow, .up-arrow{
 			cursor: pointer;
+		}
+		.down-arrow::before{
+			content: '⇓'; /* &dArr; &Downarrow; &DoubleDownArrow; &#x021D3; &#8659; */
+		}
+		.up-arrow::before{
+			content: '⇑'; /* &uArr; &Uparrow; &DoubleUpArrow; &#x021D1; &#8657; */
 		}
 	</style>
 </head>
@@ -79,7 +85,7 @@
 <hr>
 <div class="row">
 	<div class="small-8 columns">
-		<h3>Rendered HTML <span class="down-arrow">&#8681;</span></h3>
+		<h3>Rendered HTML <span id="expand-contract_arrow" class="down-arrow" alt="roll up/down top section"></span></h3> 
 	</div>
 	<div class="small-4 columns rendered">
 		<select id="font_selector" class="custom-select">

@@ -21,7 +21,8 @@ $j = { //jQuery (dom) objects ($jqo)
 	header: $('.header'),
 	downArrow: $('.down-arrow'),
 	plainText: $('#plain_text'),
-	fontSelector: $('#font_selector')
+	fontSelector: $('#font_selector'),
+	expandContractArrow: $('#expand-contract_arrow')
 },
 
 // Private funcs
@@ -125,6 +126,16 @@ bindEvents = function(){
 
 	$j.downArrow.click(function(){
 		$j.header.slideToggle();
+		if ($j.expandContractArrow.hasClass('down-arrow')) {
+			$j.expandContractArrow.removeClass('down-arrow');
+			$j.expandContractArrow.addClass('up-arrow');
+		}else{
+			$j.expandContractArrow.removeClass('up-arrow');
+			$j.expandContractArrow.addClass('down-arrow');
+		}
+		
+
+
 	});
 
 	$j.btnConvert.click(function(){
