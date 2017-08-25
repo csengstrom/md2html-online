@@ -15,6 +15,7 @@ $j = { //jQuery (dom) objects ($jqo)
 	btnCode: $('#btn_code'),
 	btnReadme: $('#btn_readme'),
 	btnFileTree: $('#btn_filetree'),
+	btnCheatsheet: $('#btn_cheatsheet'),
 	btnAll: $('#btn_md_all'),
 	copyStatus: $('.copy-status'),
 	clipboard: $('.clip-btn'),
@@ -133,9 +134,6 @@ bindEvents = function(){
 			$j.expandContractArrow.removeClass('up-arrow');
 			$j.expandContractArrow.addClass('down-arrow');
 		}
-		
-
-
 	});
 
 	$j.btnConvert.click(function(){
@@ -149,6 +147,10 @@ bindEvents = function(){
 	$j.btnClear.click(function(){
 		$j.pt.val('');
 		$j.plainText.focus();
+	});
+
+	$j.btnCheatsheet.click(function(){
+		window.open('http://codebehold.com/code/info/quickref/markdown/markdown-cheatsheet.html');
 	});
 
 	$j.btnHeadings.click(function(){
